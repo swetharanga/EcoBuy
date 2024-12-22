@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal" created-in="IU-242.20224.419">
+    <data-source name="ecommerce@localhost" uuid="58d1b66f-ff7e-4445-b033-68aab051b05e">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="MYSQL" />
+      <user-name>swetha</user-name>
+      <schema-mapping />
+    </data-source>
+    <data-source name="ecobuy@localhost" uuid="104ab8e2-3881-4c1d-aa0f-f4e9fd6b07e8">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="POSTGRES" />
+      <user-name>ecobuy_user</user-name>
+      <schema-mapping />
+    </data-source>
+  </component>
+</project>

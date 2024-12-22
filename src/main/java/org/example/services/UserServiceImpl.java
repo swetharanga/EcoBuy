@@ -3,10 +3,10 @@ package org.example.services;
 import org.example.models.User;
 import org.example.repositories.UserRepository;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
 import java.util.List;
+import java.util.Optional;
 
 public class UserServiceImpl implements UserService{
 
@@ -48,6 +48,10 @@ public class UserServiceImpl implements UserService{
         return userRepository.findAll();
     }
 
+    @Override
+    public Optional<User> getUserById(Long Id){
+        return userRepository.findAllById(Id);
+    }
     @Override
     public Optional<User> findByEmail(String email) {
         return userRepository.findByEmail(email);

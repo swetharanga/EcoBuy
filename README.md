@@ -5,11 +5,12 @@
 EcoBuy is an e-commerce platform dedicated to promoting eco-friendly and sustainable products. It connects environmentally conscious consumers with vendors selling green products. The platform is designed to facilitate ethical shopping and make it easier for users to find and purchase sustainable items.
 
 ## Tech Stack
-- **Backend:** Java and Spring Boot
-- **Frontend:** HTML, JavaScript
-- **Database:** PostgreSQL (for storing user, product, and shopping cart data)
-- **Deployment:** Oracle Cloud
-- **Payment Integration:** Stripe API (used for checkout)
+- **Backend:**  ![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white) ![Spring Boot](https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white)
+- **Frontend:**  ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white) ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+- **Database:** PostgreSQL: ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white) (for storing user, product, and shopping cart data)
+- **Deployment:** Oracle Cloud: ![Oracle Cloud](https://img.shields.io/badge/Oracle_Cloud-F80000?style=for-the-badge&logo=oracle&logoColor=white)
+- **Payment Integration:** Stripe: ![Stripe](https://img.shields.io/badge/Stripe-008CDD?style=for-the-badge&logo=stripe&logoColor=white)
+ (used for checkout)
 
 ## Features
 - **User Authentication**: Secure registration and login for buyers and sellers
@@ -64,14 +65,8 @@ EcoBuy is an e-commerce platform dedicated to promoting eco-friendly and sustain
 1. **Testing**
    - Write unit tests with JUnit & Mockito
    - Conduct integration tests for API endpoints
-   - Use Jest/React Testing Library for frontend testing
 2. **Deployment**
-   - Set up CI/CD with GitHub Actions or Jenkins
    - Deploy backend on AWS Elastic Beanstalk or EC2
-   - Host frontend on AWS S3 & CloudFront
-3. **Monitoring & Maintenance**
-   - Implement logging with ELK stack
-   - Monitor with AWS CloudWatch/New Relic
 
 ## Development Schedule
 **Day 1:** Project setup, database configuration, resolving installation issues

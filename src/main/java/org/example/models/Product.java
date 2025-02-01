@@ -1,69 +1,61 @@
 package org.example.models;
+
+import jakarta.persistence.Entity;
 import jakarta.persistence.*;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import java.math.BigDecimal;
 
-@Entity // indicates  it is a JPA entity, the class will be mapped to a database table
-@Table(name = "products")
+@Entity
+@Table(name = "products", schema = "public")
 
 public class Product {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) //How the primary key should be generated
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-    @Column(nullable = false)
+    @Column(name= "name",nullable = false)
     private String name;
 
-    @Column(name = "price")
-    private Long price;
-
-
-    @Column(columnDefinition = "TEXT")
+    @Column(name="description",columnDefinition = "description")
     private String description;
 
-    @Column(name = "image_url")
+    @Column(name="price",nullable = false)
+    private BigDecimal price;
+
+    @Column(name = "image")
     private String imageUrl;
 
-    // constructors
-    public Product(){}
+    // Constructors, getters, and setters would go here
 
-    // Getters and Setters
-    public  Product(String name, Long id, Long price, String description, String imageUrl)
-    {
+    public Product() {
+    }
+
+    public Product(String name, String description, BigDecimal price, String imageUrl) {
         this.name = name;
-        this.price = price;
-        this.id = id;
-        this.imageUrl = imageUrl;
         this.description = description;
+        this.price = price;
+        this.imageUrl = imageUrl;
+
     }
 
-    public Long getId() {
-        return id;
-    }
-    public String getName(){
+    public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public String getDescription() {
-        return description;
+    public Integer getId() {
+        return id;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
-    public Long getPrice() {
-        return price;
-    }
 
-    public void setPrice(Long price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
@@ -71,8 +63,19 @@ public class Product {
         return imageUrl;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public BigDecimal getPrice() {
+        return price;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
+    }
 }

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - EcoBuy</title>
+    <style>
+        body {
+            font-family: 'Serif', cursive;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: floralwhite;
+            padding: 10px 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            font-family: 'Pacifico', cursive;
+            font-size: 1.8em;
+            margin: 0;
+        }
+        nav {
+            display: flex;
+            gap: 40px;
+        }
+
+        nav a {
+            font-family: 'Serif', cursive;
+            font-size: 1.4em; /* Increase font size a bit */
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            gap: 20px;
+            transition: color 0.3s, transform 0.3s ease-in-out; /* Smooth transition for color and scaling */
+        }
+
+        nav a:hover {
+            color: #4CAF50; /* Highlight color on hover */
+            transform: scale(1.1); /* Scale the text to make it 'pop' */
+        }
+
+        .logout-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .logout-button:hover {
+            background-color: #45a049;
+        }
+
+        .hero-section {
+            position: relative;
+            width: 100%;
+            height: 50vh;
+            background: url('https://cdn.prod.website-files.com/63ff7c6ecc83f9ec7ffe916b/67103d8084525c8a632a5cb3_663e61f0badefabc0ce64961_sustainableproducts-ezgif.com-png-to-webp-converter.webp') center/cover no-repeat;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: floralwhite;
+            text-align: center;
+            z-index: 2;
+        }
+        .content h1 {
+            font-size: 3em;
+            font-weight: bold;
+        }
+
+        .content p {
+            font-size: 1.5em;
+            margin-top: 10px;
+        }
+
+
+        .products {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 80px;
+            padding: 20px;
+        }
+
+        .product {
+            width: 250px;
+            text-align: center;
+        }
+
+        .product img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .product p {
+            margin-top: 10px;
+            font-family: 'Serif', cursive;
+            font-weight: bold;
+            font-size: 1.4em;
+        }
+
+        .footer {
+            background-color: floralwhite;
+            padding: 5px 10px;
+            border-top: 2px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer .links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer img {
+            height: 30px;
+            vertical-align: middle;
+        }
+
+        .footer a {
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+        }
+
+        .footer a:hover {
+            color: #4CAF50;
+        }
+
+        .header-icons {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .header-icons img {
+            height: 30px;
+        }
+
+
+        .icons {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .icons img {
+            width: 20px;
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>EcoBuy</h1>
+    <nav>
+
+        <a th:href="@{/RecycledProducts}">Recycled Products</a>
+        <a th:href="@{/OrganicProducts}">Organic Products</a>
+        <a th:href="@{/EnergyEfficientProducts}">Energy Efficient Products</a>
+        <a th:href="@{/SustainableProducts}">Sustainable Products</a>
+        <div class="icons">
+            <a th:href="@{/ShoppingCart}">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_zGUTExrCb88KXCI8PwDY7r7evXeZuEbuLQ&s" alt="Shopping Cart Icon"> Shopping Cart
+            </a>
+        </div>
+    </nav>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Header Icons</title>
+        <style>
+            .header-icons {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px;
+                background-color: floralwhite;
+            }
+
+            .logout-button {
+                font-family: Serif, cursive;
+                font-size: 14px;
+                color: white;
+                background-color: #4CAF50;
+                border: none;
+                border-radius: 5px;
+                padding: 8px 12px;
+                cursor: pointer;
+                transition: background-color 0.2s;
+            }
+
+            .logout-button:hover {
+                background-color:#4CAF50;
+            }
+        </style>
+    </head>
+    <body>
+        <form action="/logout" method="post">
+            <button class="logout-button" type="submit">Logout</button>
+        </form>
+    </div>
+
+    <script>
+        function redirectToCart() {
+            window.location.href = '/ShoppingCart'; // Replace with the actual cart URL
+        }
+    </script>
+    </body>
+    </html>
+
+</header>
+
+<div class="hero-section">
+    <div class="content">
+        <h1>Welcome to EcoBuy</h1>
+        <p>Your one-stop shop for eco-friendly products</p>
+    </div>
+</div>
+
+<section class="products">
+    <div class="product">
+        <img src="https://static.vecteezy.com/system/resources/thumbnails/047/106/912/small/eco-friendly-bamboo-toothbrush-with-water-droplets-on-wet-slate-surface-and-green-leaves-photo.jpeg" alt="Bamboo Toothbrush">
+        <p>Bamboo Toothbrush</p>
+    </div>
+    <div class="product">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJnXJZnxLugAAhJIx3nUoBYCbPVW5RPcRaeg&s" alt="Organic Coconut Oil">
+        <p>Organic Coconut Oil</p>
+    </div>
+</section>
+
+<footer class="footer">
+    <p>&copy; 2025 EcoBuy. All rights reserved.</p>
+</footer>
+</body>
+</html>

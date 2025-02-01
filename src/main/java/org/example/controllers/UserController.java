@@ -4,40 +4,69 @@ import org.example.models.User;
 import org.example.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.example.ecobuy.model.UserLoginRequest;
-import com.example.ecobuy.service.AuthService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Optional;
+import org.springframework.web.bind.annotation.RequestMapping;
 // Handling login and logout and signup processes, authorization, profile management, activity
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping(value ="/api/users")
+@CrossOrigin(origins = "http://localhost:8080", allowCredentials = "true")
 
-public class UserController {
+public  class UserController {
+
+    private final UserService userService;
+    private final PasswordEncoder passwordEncoder;
+
 
     @Autowired
-    private UserService userService;
-
-
-    @PostMapping
-    public saveUser(){
+    public UserController(UserService userService, PasswordEncoder passwordEncoder) {
+        this.userService = userService;
+        this.passwordEncoder = passwordEncoder;
 
     }
 
-    @GetMapping
-    public ResponseEntity<Optional> findUserById(@PathVariable Long Id){
-        return userService.getUserById(Id).map()
+    @PostMapping("/login")
+    public ResponseEntity<?> loginUser(@RequestBody User loginRequest) {
+        return userService.findByEmail(loginRequest.getEmail())
+                .map(user -> {
+                    if (passwordEncoder.matches(loginRequest.getPassword(), user.getPassword())) {
+                        return ResponseEntity.ok(user);
+                    }
+                    return ResponseEntity.badRequest().body("Invalid credentials");
+                })
+                .orElse(ResponseEntity.badRequest().body("User not found"));
     }
-    @DeleteMapping
-    public  ResponseEntity<Void> deleteUser(@PathVariable Long Id){
-        userService.getUserById(Id)
+
+    @PostMapping("/register")
+    public ResponseEntity<?> registerUser(@RequestBody User user) {
+        if (userService.findByEmail(user.getEmail()).isPresent()) {
+            return ResponseEntity.badRequest().body("Email already exists");
+        }
+
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        User savedUser = userService.saveUser(user);
+        return ResponseEntity.ok(savedUser);
+    }
+}
+/*
+ Mapping
+    public ResponseEntity<User> saveUser(@RequestBody User user){
+        return userService.saveAndFlush(user);
+
+    }
+    @GetMapping("/user/{id}")
+    public ResponseEntity<User> findUserById(@PathVariable Long id){
+        return userService.getUserById(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Object> deleteUser(@PathVariable Long id) {
+        return userService.getUserById(id).map(user -> {
+            userService.deleteUser(id);  // Deletes user based on ID
+            return ResponseEntity.noContent().build();  // HTTP 204 No Content
+        }).orElse(ResponseEntity.notFound().build());  // HTTP 404 Not Found if user doesn't exist
     }
 
     @GetMapping
@@ -47,22 +76,11 @@ public class UserController {
 
     }
 
-    public findByEmail(){
+    @GetMapping("/email/{email}")
+    public ResponseEntity<User> findByEmail(@PathVariable String email){
+        return userService.findByEmail(email).map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
 
     }
 
-    @PostMapping
-    public ResponseEntity<String> responseEntity(@ResponseBody UserLoginRequest loginRequest) // login request will contain the login credentials entered by the user in json format
-    {
-        this.loginRequest = loginRequest;
-        String token  = authService.authenticateUser(loginRequest.getEmail(), loginRequest.getPassword());
-        if (token!= null) {
-            return ResponseEntity.ok(new LoginResponse("Login successful", token));
-        }
-        else{
-            return ResponseEntity.status(401).body("Invalid login credentials, try again");
-        }
-
-    }
-
-}
+*/

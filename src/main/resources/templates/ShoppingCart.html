@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EcoBuy Shopping Cart</title>
+  <style>
+    /* General Styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: floralwhite;
+      font-style: italic;
+    }
+
+    .container {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .content {
+      flex: 1;
+      padding-right: 20px;
+    }
+
+    .sidebar {
+      width: 250px;
+      background-color: floralwhite;
+      padding: 20px;
+      position: fixed;
+      top: 0;
+      right: 0;
+      border: 1px solid #ccc;
+      height: 100%;
+      overflow-y: auto;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: floralwhite;
+      color: black;
+      padding: 10px 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+    }
+
+    header h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 1.8em;
+      margin: 0;
+    }
+
+    nav {
+      display: flex;
+      gap: 20px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+      font-family: 'Pacifico', cursive;
+      font-size: 1.2em;
+      transition: color 0.3s, transform 0.3s;
+    }
+
+    nav a:hover {
+      color: white;
+      text-decoration: underline;
+      transform: scale(1.1);
+    }
+
+    .icons {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .icons img {
+      width: 20px;
+      height: 20px;
+    }
+
+    .logout-form button {
+      background-color: #4CAF50;
+      color: white;
+      font-size: 14px;
+      border: none;
+      border-radius: 5px;
+      padding: 8px 12px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .logout-form button:hover {
+      background-color: #4CAF50;
+    }
+
+    /* Cart Styles */
+    .cart-container {
+      padding: 20px;
+      margin: 20px auto;
+      max-width: 800px;
+    }
+
+    .cart-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      padding: 15px;
+      margin-bottom: 15px;
+    }
+
+    .cart-item img {
+      width: 120px;
+      border-radius: 5px;
+    }
+
+    .cart-details {
+      flex: 1;
+      margin-left: 20px;
+    }
+
+    .cart-name {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .cart-quantity {
+      margin-bottom: 5px;
+      color: gray;
+    }
+
+    .cart-price {
+      font-size: 16px;
+      font-weight: bold;
+      color: #27ae60;
+    }
+
+    .delete-btn {
+      font-family: 'Pacifico', cursive;
+      font-weight: bold;
+      font-size: 14px;
+      color: #27ae60; /* Set text color for delete */
+      border: none; /* Remove button styling */
+      background: none; /* Remove button background */
+      cursor: pointer; /* Maintain pointer cursor to indicate it's clickable */
+      padding: 0; /* Remove extra padding */
+      text-decoration: underline; /* Add underline to make it look like a link */
+      transition: color 0.2s;
+    }
+
+    .delete-btn:hover {
+      color: #c0392b; /* Change color on hover */
+      text-decoration: none; /* Optional: Remove underline on hover */
+    }
+
+
+    .checkout-btn {
+      background-color: #4CAF50;
+      color: ivory;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .checkout-btn:hover {
+      background-color: green;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1><i>EcoBuy</i></h1>
+  <nav>
+    <a th:href="@{/RecycledProducts}">Recycled Products</a>
+    <a th:href="@{/OrganicProducts}">Organic Products</a>
+    <a th:href="@{/EnergyEfficientProducts}">Energy Efficient Products</a>
+    <a th:href="@{/SustainableProducts}">Sustainable Products</a>
+    <div class="icons">
+      <a th:href="@{/ShoppingCart}">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_zGUTExrCb88KXCI8PwDY7r7evXeZuEbuLQ&s" alt="Shopping Cart Icon"> Shopping Cart
+      </a>
+    </div>
+  </nav>
+  <form class="logout-form" th:action="@{/logout}" method="post">
+    <button type="submit">Logout</button>
+  </form>
+</header>
+
+<div class="cart-container">
+  <th:block th:each="cartItem : ${cartItems}">
+    <div class="cart-item">
+      <!-- Image -->
+      <img th:src="@{${cartItem.product.imageUrl}}" alt="Product Image">
+
+      <!-- Details -->
+      <div class="cart-details">
+        <div class="cart-name" th:text="${cartItem.product.name}"></div>
+        <div class="cart-quantity">Quantity: <span th:text="${cartItem.quantity}"></span></div>
+        <div class="cart-price" th:text="'$' + (${cartItem.product.price * cartItem.quantity})"></div>
+      </div>
+
+      <!-- Delete Button -->
+      <form id="delete-form-${cartItem.id}" th:action="@{/api/cart/delete/{id}(id=${cartItem.id})}" method="POST">
+        <button class="delete-btn" type="submit">Delete</button>
+      </form>
+    </div>
+  </th:block>
+</div>
+
+<form th:action="@{/api/cart/Checkout}" method="post" style="text-align: center; margin-top: 20px;">
+  <button class="checkout-btn" type="submit">Checkout</button>
+</form>
+
+<script>
+  document.querySelectorAll('[id^="delete-form-"]').forEach(form => {
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+      const url = this.action;
+      fetch(url, { method: 'POST' })
+              .then(response => {
+                if (response.ok) location.reload();
+              })
+              .catch(error => console.error('Error:', error));
+    });
+  });
+</script>
+</body>
+</html>

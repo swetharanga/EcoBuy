@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eco-Friendly Tote Bag</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: floralwhite;
+            font-style: italic;
+        }
+
+        .product-page {
+            display: flex;
+            justify-content: flex-start;
+            margin-top: 40px;
+            flex-wrap: wrap;
+            gap: 160px;
+            padding: 20px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: floralwhite;
+            color: black;
+            padding: 10px 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            font-family: 'Pacifico', cursive;
+            font-size: 1.8em;
+            margin: 0;
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            font-family: 'Pacifico', cursive;
+            font-size: 1.2em;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        nav a:hover {
+            color: white;
+            text-decoration: underline;
+            transform: scale(1.1);
+        }
+
+        .icons {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .icons img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .product-detail {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 20px;
+            margin-top: 20px;
+        }
+
+        .product-specifications h3,
+        .product-reviews h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            font-weight: bold;
+            color: black;
+            font-family: 'Pacifico', cursive;
+        }
+
+        .product-reviews .review {
+            margin-bottom: 15px;
+            font-family: 'Arial', sans-serif;
+            font-size: 1em;
+            color: #333;
+        }
+
+        .product-image {
+            flex: 1;
+            max-width: 350px;
+            margin-right: 20px;
+        }
+
+        .product-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-info {
+            flex: 1;
+            max-width: 300px;
+            margin-left: -100px;
+        }
+
+        .product-info h2 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: bold;
+            max-width: 900px;
+            margin-top: 10px;
+            overflow: hidden;  /* Hide any overflowing text */
+            text-overflow: ellipsis;  /* Show ellipsis for overflowed text */
+        }
+
+        .product-info .price {
+            font-size: 1.8rem;
+            color: #4CAF50;
+            margin-bottom: 15px;
+        }
+
+        .product-info .rating {
+            margin: 10px 0;
+            color: #f39c12;
+        }
+
+        .product-description {
+            margin: 20px 0;
+            width: 500px;
+        }
+
+        .product-description p {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .quantity-form {
+            margin-top: 20px;
+        }
+
+        .quantity-form input[type="number"] {
+            padding: 8px;
+            font-size: 1rem;
+            width: 70px;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .quantity-form button {
+            background-color: #4CAF50;
+            color: white;
+            font-size: 1rem;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .quantity-form button:hover {
+            background-color: #45a049;
+        }
+
+        .product-specifications ul {
+            list-style: none;
+            padding-left: 2rem;
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+
+        section {
+            padding-top: 20px;
+            margin-top: 40px;
+        }
+
+        .product-specifications li {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .product-specifications li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 1.3rem;
+            color: #4CAF50;
+        }
+
+        footer {
+            background-color: floralwhite;
+            color: black;
+            text-align: center;
+            padding: 15px 0;
+            margin-top: 40px;
+        }
+
+        .product-images {
+            display: flex;
+            justify-content: flex-start;
+            margin-top: 10px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        section {
+            padding-top: 20px; /* Adds space inside the section */
+            margin-top: 40px; /* Add spacing between sections */
+            display: block; /* Ensures block behavior */
+        }
+
+        .product-images img {
+            width: calc(90%);;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Ensuring reviews appear on the right of the product images */
+        .product-reviews {
+            margin-left: 50px;
+            flex: 1;
+            max-width: 700px;
+            margin-top: -0px;
+        }
+
+        .product-reviews ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .product-reviews li {
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Eco-Friendly Tote Bag</h1>
+    <nav>
+        <a href="/RecycledProducts">Recycled Products</a>
+        <a href="/OrganicProducts">Organic Products</a>
+        <a href="/EnergyEfficientProducts">Energy Efficient Products</a>
+        <a href="/SustainableProducts">Sustainable Products</a>
+    </nav>
+    <div class="icons">
+        <a href="/ShoppingCart">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_zGUTExrCb88KXCI8PwDY7r7evXeZuEbuLQ&s" alt="Shopping Cart Icon"> Shopping Cart
+        </a>
+    </div>
+</header>
+
+
+<section class="product-detail">
+    <div class="product-image">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQa4yV2PN37RXUtUuuk-VOzJtELh_zd_3KHlw&s" alt="Eco-friendly bag">
+    </div>
+
+    <div class="product-info">
+        <h2>Eco-friendly Tote Bag</h2>
+        <p class="price">$15.99</p>
+        <div class="rating">
+            <span class="star-rating">★★★★☆</span> (200 Reviews)
+        </div>
+        <div class="product-description">
+            <p><strong>Description:</strong> This eco-friendly recycled bag is perfect for carrying your essentials while contributing to a sustainable environment. Its lightweight design makes it easy to carry, and the durable material ensures longevity.</p>
+            <p><strong>Material:</strong> Recycled Polyester</p>
+            <p><strong>Color:</strong> Brown</p>
+        </div>
+
+        <div class="quantity-form">
+            <form action="/api/cart/add" method="POST">
+                <input type="hidden" name="productId" value="1">
+                <label>
+                    <input type="number" name="quantity" value="1" min="1" max="100">
+                </label>
+                <button type="submit">Add to Cart</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Product Specifications -->
+    <div class="product-specifications">
+        <h3>Product Specifications</h3>
+        <ul>
+            <li><strong>Material:</strong> Recycled Polyester</li>
+            <li><strong>Dimensions:</strong> 15" x 12" x 4"</li>
+            <li><strong>Weight:</strong> 0.5 kg</li>
+            <li><strong>Capacity:</strong> 20 liters</li>
+            <li><strong>Color:</strong> Green</li>
+        </ul>
+    </div>
+</section>
+
+<!-- Additional Product Images -->
+<div class="product-page">
+
+<section class="product-images">
+    <div>
+        <p><strong>Product Interior:</strong></p>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOKZxtcvtoEgNvcoaAN1v3ehJPlCxxHlvePg&s" alt="Interior of recycled bag">
+    </div>
+    <div>
+        <p><strong>Displayed on Shelf:</strong></p>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzSD_1G2MyZ_8ZLsylFE30OKpe7fhhHlNJtA&s" alt="Bag on shelf display">
+    </div>
+</section>
+
+
+<!-- Product Reviews (Moved right) -->
+<section class="product-reviews">
+    <h3>Customer Reviews</h3>
+    <div class="review">
+        <p><strong>Sarah Williams</strong> <span class="rating">⭐⭐⭐⭐⭐</span></p>
+        <p>"I absolutely love this bag! The material is high quality and durable, perfect for everyday use. It's spacious enough for all my essentials, and the design is chic and modern. I highly recommend it!"</p>
+    </div>
+    <div class="review">
+        <p><strong>Michael Brown</strong> <span class="rating">⭐⭐⭐⭐</span></p>
+        <p>"Great bag overall. It holds all my things comfortably and looks stylish. I just wish there were more color options!"</p>
+    </div>
+    <div class="review">
+        <p><strong>Amy Johnson</strong> <span class="rating">⭐⭐⭐⭐⭐</span></p>
+        <p>This bag has become my go-to accessory! It’s the perfect size for my daily commute, and the material is sturdy. I’ve received so many compliments</p>
+    </div>
+</section>
+</div>
+
+    <footer>
+        <p>&copy; 2025 EcoBuy. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
